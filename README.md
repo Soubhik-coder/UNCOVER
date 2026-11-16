@@ -85,10 +85,6 @@ Below is a detailed description of the arguments accepted by the master orchestr
 #### Global Parameters
 * `--dbs`: **(Required)** List of target databases (e.g., `--dbs CWS_Bench`).
 * `--workers`: Number of parallel workers to utilize. *(Default: 12)*
-<<<<<<< HEAD
-* `--circuit`: Target a specific circuit (e.g., 'c432'). *(Default: None - Processes all)* [THIS IS A WORK IN PROGRESS FEATURE]
-=======
->>>>>>> adf8a7a (Updated instructions and folder structure)
 * `--limit`: Limit the maximum number of graphs processed. *(Default: None)*
 * `--force`: Force overwrite of existing caches and output files.
 * `--skip-existing`: Skip processing for existing files or variants to save time.
