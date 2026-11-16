@@ -1,6 +1,6 @@
-# GateLock Source Repository
+# UNCOVER (UNsupervised Clustering-based Oracle-less Variant Extraction and Recovery) in Input-Dependent Key-based Logic Locking (IDKLL) Source Repository
 
-We extend our gratitude for your interest in our work. This repository contains the source code, datasets, and evaluation scripts for the GateLock project. The provided tools facilitate a comprehensive pipeline for analyzing and evaluating logic locking methodologies.
+We extend our gratitude for your interest in our work. This repository contains the source code, datasets, and evaluation scripts for the UNCOVER work done. The provided tools facilitate a comprehensive pipeline for analyzing and evaluating IDKLL methodologies.
 
 ## Repository Structure
 
@@ -28,9 +28,10 @@ The repository is organized into the following primary directories and files. Pl
     │   └── EvaluateCovering.py
     ├── Locking/
     │   ├── BatchLock.py
-    │   ├── Database.py (Dummy script to be replaced)
+    │   ├── Database.py 
     │   ├── GateLock.py
-    │   └── VerifyLock.py
+    │   ├── VerifyLock.py
+    │   └── DatabaseDirectory/
     ├── StructuralFingerprinting/
     │   ├── Adaptive.py
     │   ├── Collapse.py
@@ -53,11 +54,19 @@ The `Datasets` directory contains the databases of the locked variants used in o
 * `TwoLevels`: Contains variants corresponding to 2-level Quine-McCluskey formulations.
 * `TwoInputGates`: Contains variants corresponding to two-input constrained gates.
 
-**To utilize a specific dataset:**
+**To configure and utilize a specific dataset:**
 
-1. Navigate to the `Datasets` directory and select the desired variant script (e.g., from `TwoLevels` or `TwoInputGates`).
-2. Copy the selected script into the `Scripts/Locking/` directory.
-3. Rename the copied script strictly to `Database.py`. This action replaces the default dummy database script and links your selected dataset to the execution pipeline.
+The pipeline architecture allows for multiple batches of databases to be configured and run. The `--dbs` argument in `RunPipeline.py` directly targets specific subdirectories that you must create under the `Scripts/Locking/` directory.
+
+To set up a database for the pipeline:
+
+1. Create a new directory under `Scripts/Locking/` and name it after your desired database (e.g., `Scripts/Locking/MyCorpus/`).
+2. Copy `BatchLock.py`, `VerifyLock.py`, and `GateLock.py` from the base `Scripts/Locking/` directory into your newly created directory.
+3. Navigate to the `Datasets` directory and select your desired variant script.
+4. Copy this selected variant script into your new directory (`Scripts/Locking/MyCorpus/`) and rename it strictly to `Database.py`.
+
+This modular setup replaces the default dummy database script and links your selected dataset to the execution pipeline. It allows you to stage multiple unique databases simultaneously, which you can then process selectively or sequentially by referencing their folder names via the `--dbs` flag (e.g., `--dbs MyCorpus`).
+
 
 ### 3. Custom Mappings
 
@@ -74,9 +83,12 @@ The primary orchestrator for the entire workflow is `RunPipeline.py`. It provide
 Below is a detailed description of the arguments accepted by the master orchestrator, `RunPipeline.py`:
 
 #### Global Parameters
-* `--dbs`: **(Required)** List of target databases (e.g., `--dbs Baseline_Splits`).
+* `--dbs`: **(Required)** List of target databases (e.g., `--dbs CWS_Bench`).
 * `--workers`: Number of parallel workers to utilize. *(Default: 12)*
+<<<<<<< HEAD
 * `--circuit`: Target a specific circuit (e.g., 'c432'). *(Default: None - Processes all)* [THIS IS A WORK IN PROGRESS FEATURE]
+=======
+>>>>>>> adf8a7a (Updated instructions and folder structure)
 * `--limit`: Limit the maximum number of graphs processed. *(Default: None)*
 * `--force`: Force overwrite of existing caches and output files.
 * `--skip-existing`: Skip processing for existing files or variants to save time.

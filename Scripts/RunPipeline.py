@@ -114,9 +114,9 @@ def main():
     ap = argparse.ArgumentParser(description="Master Pipeline Orchestrator")
     
     # Global Parameters
-    ap.add_argument("--dbs", required=True, action="append", help="List of databases (e.g. Baseline_Splits)")
+    ap.add_argument("--dbs", required=True, action="append", help="List of databases (e.g. CWS_Bench)")
     ap.add_argument("--workers", type=int, default=12, help="Number of parallel workers")
-    ap.add_argument("--circuit", type=str, default=None, help="Target a specific circuit (e.g. 'c432')")
+    ap.add_argument("--circuit", type=str, default=None, help="Target a specific circuit (e.g. 'c432') [THIS IS A WORK IN PROGRESS FEATURE]")
     ap.add_argument("--limit", type=int, default=None, help="Limit graphs processed")
     ap.add_argument("--force", action="store_true", help="Force overwrite of existing caches and outputs")
     ap.add_argument("--skip-existing", action="store_true", help="Skip existing files/variants")
@@ -206,7 +206,7 @@ def main():
                   cache_dir, res_dir, out_log_dir, eval_dir]:
             d.mkdir(parents=True, exist_ok=True)
 
-        script_locking_dir = root / "Scripts" / "Locking" / "TwoInputs" / db # CHANGED HERE TO ACCOMODATE FOR THE FILE TREE HIERARCHY
+        script_locking_dir = root / "Scripts" / "Locking" / db
         
         # --- Step 1: BatchLock ---
         cmd = [
