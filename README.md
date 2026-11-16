@@ -76,7 +76,7 @@ Below is a detailed description of the arguments accepted by the master orchestr
 #### Global Parameters
 * `--dbs`: **(Required)** List of target databases (e.g., `--dbs Baseline_Splits`).
 * `--workers`: Number of parallel workers to utilize. *(Default: 12)*
-* `--circuit`: Target a specific circuit (e.g., 'c432'). *(Default: None - Processes all)*
+* `--circuit`: Target a specific circuit (e.g., 'c432'). *(Default: None - Processes all)* [THIS IS A WORK IN PROGRESS FEATURE]
 * `--limit`: Limit the maximum number of graphs processed. *(Default: None)*
 * `--force`: Force overwrite of existing caches and output files.
 * `--skip-existing`: Skip processing for existing files or variants to save time.
